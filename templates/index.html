@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Price Checker</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-right: 0.5rem;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        img {
+            margin-top: 1rem;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Check Stock Price</h2>
+        <form method="post">
+            <input type="text" name="symbol" placeholder="Enter symbol (e.g., AAPL)" required>
+            <button type="submit">Check</button>
+        </form>
+        {% if price %}
+            <div class="result">
+                {% if symbol %}<strong>{{ symbol }}</strong>: {% endif %}
+                {{ price }}
+            </div>
+        {% endif %}
+
+        {% if show_chart %}
+            <img src="static/stock_chart.png" alt="Price Trend">
+        {% endif %}
+    </div>
+</body>
+</html>
