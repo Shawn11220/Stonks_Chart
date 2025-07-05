@@ -4,6 +4,8 @@ from fastapi.templating import Jinja2Templates
 import yfinance as yf
 import matplotlib.pyplot as plt
 from fastapi.staticfiles import StaticFiles
+from datetime import datetime
+import matplotlib.dates as mdates
 import os
 
 app = FastAPI(title="Stock Price App")
@@ -29,12 +31,20 @@ def form_post(request: Request, symbol: str = Form(...)):
     price = f"${round(data['Close'].iloc[-1], 2)}"
 
     # Plot trend
-    plt.figure(figsize=(6, 3))
-    data['Close'].plot(title=f"{symbol} Price Trend (7 days)", color="blue")
+    plt.figure(figsize=(8, 4))
+    plt.style.use("seaborn-vcolor")
+    plt.plot(data.index, data['Close'], marker='o', color='#007acc', label='Close Price')
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b %d'))
+    plt.xticks(rotation=45)
+
+    plt.title(f"{symbol} - Last 7 Days", fontsize=14, weight='bold')
     plt.xlabel("Date")
     plt.ylabel("Price (USD)")
+    plt.grid(True, linestyle='--', alpha=0.5)
+    plt.legend()
+
     plt.tight_layout()
-    plt.savefig(CHART_PATH)
+    plt.savefig("static/stock_chart.png")
     plt.close()
 
     return templates.TemplateResponse("index.html", {
