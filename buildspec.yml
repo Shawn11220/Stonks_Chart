@@ -7,20 +7,23 @@ phases:
     commands:
       - echo Installing Python dependencies...
       - pip install --upgrade pip
-      - pip install -r requirements.txt
 
   pre_build:
     commands:
       - echo Running pre-build steps...
-
+      - aws codeartifact login --tool pip --repository devops_artifact --domain devops --domain-owner 624564777830 --region eu-north-1
+      - echo Pre-build steps completed.
   build:
     commands:
       - echo Build started on `date`
+      - pip install -r requirements.txt 
       - echo Build completed on `date`
 
   post_build:
     commands:
       - echo Post-build steps...
+      - zip -r app.zip .
+      - echo Post-build steps completed.
 
 artifacts:
   files:
