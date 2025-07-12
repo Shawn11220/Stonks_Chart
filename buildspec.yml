@@ -7,6 +7,7 @@ phases:
     commands:
       - echo Installing Python dependencies...
       - pip install --upgrade pip
+      - sudo apt install python3-pip -y
 
   pre_build:
     commands:
