@@ -13,10 +13,6 @@ phases:
   pre_build:
     commands:
       - echo Running pre-build steps...
-      - set -x
-      - aws --version
-      - aws sts get-caller-identity
-      - aws codeartifact list-repositories --domain devops --domain-owner 624564777830 --region eu-north-1
       - aws codeartifact login --tool pip --repository devops_artifact --domain devops --domain-owner 624564777830 --region eu-north-1
       - echo Pre-build steps completed.
   build:
