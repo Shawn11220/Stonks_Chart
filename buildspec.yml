@@ -22,7 +22,7 @@ phases:
   post_build:
     commands:
       - echo Post-build steps...
-      - zip -r app.zip .
+      - zip -r app.zip . -x "venv/*" "*.pyc" "__pycache__/*" ".git/*"
       - echo Post-build steps completed.
 
 artifacts:
