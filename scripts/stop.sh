@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Stopping running FastAPI app..."
+
+# Find and kill the process running main.py (or uvicorn/gunicorn)
+APP_PID=$(ps aux | grep 'main.py' | grep -v grep | awk '{print $2}')
+
+if [ -z "$APP_PID" ]; then
+  echo "No FastAPI app is currently running."
+else
+  echo "Killing process ID $APP_PID"
+  kill -9 $APP_PID
+fi
