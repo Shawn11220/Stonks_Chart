@@ -14,8 +14,12 @@ fi
 
 echo "Cleaning up application directory..."
 
-# Go to home just in case
-cd /home/ubuntu || exit 1
-
-# Remove everything inside prodapp
-sudo rm -rf /home/ubuntu/prodapp/*
+if [ -d "/home/ubuntu/prodapp" ]; then
+  echo "Application directory does exist."
+  cd /home/ubuntu || exit 1
+  sudo rm -rf /home/ubuntu/prodapp/*
+  exit 1
+else
+  echo "Application directory does not exist."
+  exit 0
+fi
