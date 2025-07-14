@@ -18,7 +18,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Activating virtual environment..."
-source venv.sh
+source /home/ubuntu/venv/bin/activate
 
 echo "Installing Python packages..."
 pip install --upgrade pip
