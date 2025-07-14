@@ -15,8 +15,13 @@ fi
 echo "Cleaning up application directory..."
 
 if [ -d "/home/ubuntu/prodapp" ]; then
-  echo "Application directory does exist."
-  cd /home/ubuntu || exit 1
+  if [ "$PWD" = "/home/ubuntu/prodapp" ]; then
+    echo "Current directory is /home/ubuntu/prodapp, proceeding with cleanup."
+    cd .. || exit 1
+  else
+    echo "Current directory is not /home/ubuntu/prodapp, exiting."
+  fi
+
   sudo rm -rf /home/ubuntu/*
   sudo rm -rf /opt/codedeploy-agent/deployment-root/*
   exit 1
