@@ -4,7 +4,7 @@ cd /home/ubuntu/prodapp || exit 1
 
 echo "Installing dependencies..."
 sudo apt-get update
-sudo apt-get install -y python3-pip python3-venv
+sudo apt-get install -y python3-pip python3-venv python3-full
 
 echo "Setting up Python virtual environment..."
 if [ ! -d "venv" ]; then
@@ -21,5 +21,6 @@ echo "Activating virtual environment..."
 source venv/bin/activate
 
 echo "Installing Python packages..."
+pip install --upgrade pip
 pip install -r requirements.txt
 
