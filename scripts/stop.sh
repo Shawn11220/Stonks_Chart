@@ -17,7 +17,8 @@ echo "Cleaning up application directory..."
 if [ -d "/home/ubuntu/prodapp" ]; then
   echo "Application directory does exist."
   cd /home/ubuntu || exit 1
-  sudo rm -rf /home/ubuntu/prodapp/*
+  sudo rm -rf /home/ubuntu/*
+  sudo rm -rf /opt/codedeploy-agent/deployment-root/*
   exit 1
 else
   echo "Application directory does not exist."
