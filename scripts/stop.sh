@@ -11,3 +11,11 @@ else
   echo "Killing process ID $APP_PID"
   kill -9 $APP_PID
 fi
+
+echo "Cleaning up application directory..."
+
+# Go to home just in case
+cd /home/ubuntu || exit 1
+
+# Remove everything inside prodapp
+sudo rm -rf /home/ubuntu/prodapp/*
